@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://xqvcbk7jfhq0"]
+
+[ext_resource type="Script" uid="uid://djuk6yw0ry0nc" path="res://Scripts/Main.gd" id="1_37b1d"]
+[ext_resource type="Texture2D" uid="uid://bnv5leb7dt5wp" path="res://Resources/Main Menu.png" id="1_og4jd"]
+[ext_resource type="FontFile" uid="uid://dxpnk42n08j66" path="res://Resources/stencilla.ttf" id="2_1lxxj"]
+[ext_resource type="Texture2D" uid="uid://bb2qmubv6marr" path="res://Resources/Main Button.png" id="3_37b1d"]
+[ext_resource type="Texture2D" uid="uid://dflar3f1rjwo5" path="res://Resources/Main Button Hover.png" id="4_lmkek"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_035le"]
+font = ExtResource("2_1lxxj")
+font_size = 150
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+shadow_size = 7
+shadow_color = Color(0, 0, 0, 0.588235)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1lxxj"]
+font = ExtResource("2_1lxxj")
+font_size = 80
+font_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.647059)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_37b1d")
+
+[node name="MainMenu" type="Sprite2D" parent="."]
+position = Vector2(840, 450)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_og4jd")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 76.0
+offset_right = 1678.0
+offset_bottom = 549.0
+text = "Operation 
+Steel Front"
+label_settings = SubResource("LabelSettings_035le")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 536.0
+offset_right = 1030.0
+offset_bottom = 656.0
+texture_normal = ExtResource("3_37b1d")
+texture_hover = ExtResource("4_lmkek")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="TextureButton2"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 30.0
+offset_right = 373.0
+offset_bottom = 110.0
+text = "START"
+label_settings = SubResource("LabelSettings_1lxxj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 691.0
+offset_right = 1030.0
+offset_bottom = 811.0
+texture_normal = ExtResource("3_37b1d")
+texture_hover = ExtResource("4_lmkek")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="TextureButton3"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 28.0
+offset_right = 373.0
+offset_bottom = 108.0
+text = "QUIT"
+label_settings = SubResource("LabelSettings_1lxxj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="TextureButton3" to="." method="_on_texture_button_3_pressed"]
