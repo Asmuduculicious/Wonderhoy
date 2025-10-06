@@ -1,7 +1,7 @@
 extends Control
 
-func _on_texture_button_2_pressed() -> void:
-	print("Yes")
+func _on_start_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Settings.tscn")
 
-func _on_texture_button_3_pressed() -> void:
+func _on_quit_button_pressed() -> void:
 	get_tree().quit()

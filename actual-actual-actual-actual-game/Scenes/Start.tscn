@@ -46,7 +46,7 @@ label_settings = SubResource("LabelSettings_035le")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton2" type="TextureButton" parent="."]
+[node name="Start Button" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 610.0
 offset_top = 536.0
@@ -56,7 +56,7 @@ texture_normal = ExtResource("3_37b1d")
 texture_hover = ExtResource("4_lmkek")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="TextureButton2"]
+[node name="Label" type="Label" parent="Start Button"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 30.0
@@ -67,7 +67,7 @@ label_settings = SubResource("LabelSettings_1lxxj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton3" type="TextureButton" parent="."]
+[node name="Quit Button" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 610.0
 offset_top = 691.0
@@ -77,7 +77,7 @@ texture_normal = ExtResource("3_37b1d")
 texture_hover = ExtResource("4_lmkek")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="TextureButton3"]
+[node name="Label" type="Label" parent="Quit Button"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 28.0
@@ -88,5 +88,5 @@ label_settings = SubResource("LabelSettings_1lxxj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="TextureButton2" to="." method="_on_texture_button_2_pressed"]
-[connection signal="pressed" from="TextureButton3" to="." method="_on_texture_button_3_pressed"]
+[connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Quit Button" to="." method="_on_quit_button_pressed"]
