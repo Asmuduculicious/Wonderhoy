@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bs0lxe67csf5i"]
+[gd_scene load_steps=23 format=3 uid="uid://bs0lxe67csf5i"]
 
 [ext_resource type="Texture2D" uid="uid://bb2qmubv6marr" path="res://Resources/Main Button.png" id="1_w371h"]
 [ext_resource type="Script" uid="uid://dqjhmms4wmpf5" path="res://Scripts/UI.gd" id="1_xjg7p"]
@@ -8,6 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://bye6m8gkx3ibu" path="res://Resources/Wood.png" id="5_mg6lk"]
 [ext_resource type="FontFile" uid="uid://dxpnk42n08j66" path="res://Resources/stencilla.ttf" id="5_wunin"]
 [ext_resource type="FontFile" uid="uid://d4emax0tb4glp" path="res://Resources/stencil-Regular.ttf" id="7_mg6lk"]
+[ext_resource type="Texture2D" uid="uid://dflar3f1rjwo5" path="res://Resources/Main Button Hover.png" id="9_wunin"]
+[ext_resource type="Texture2D" uid="uid://cvvvdcf7fpjgx" path="res://Resources/Craft Button.png" id="10_b1goy"]
+[ext_resource type="Texture2D" uid="uid://bm132imvpe4y5" path="res://Resources/Build Button.png" id="10_j04uc"]
+[ext_resource type="Texture2D" uid="uid://c1wblymvgndpu" path="res://Resources/Draft Button.png" id="11_vqx31"]
+[ext_resource type="Texture2D" uid="uid://cnib72clvgu1k" path="res://Resources/Menu Background.png" id="13_n04ve"]
+[ext_resource type="Texture2D" uid="uid://c4khwr1andju2" path="res://Resources/Smaller Background.png" id="14_wi7yl"]
+[ext_resource type="Texture2D" uid="uid://cmgfg5682416q" path="res://Resources/Even smaller background.png" id="15_5q4fb"]
+[ext_resource type="Script" uid="uid://bisanrrbsah5g" path="res://Scripts/craft_resources.gd" id="15_13dyv"]
+[ext_resource type="Texture2D" uid="uid://5n5v32cpppdr" path="res://Resources/Small Button.png" id="16_jnovg"]
+[ext_resource type="Texture2D" uid="uid://c8w4fm0p3sgst" path="res://Resources/Small Button Hover.png" id="17_13dyv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wunin"]
 font = ExtResource("7_mg6lk")
@@ -16,8 +26,17 @@ font_size = 90
 [sub_resource type="LabelSettings" id="LabelSettings_j04uc"]
 font = ExtResource("5_wunin")
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("money_number", "steel_number", "food_number", "wood_number", "money_timer", "steel_timer", "food_timer", "wood_timer", "money_note", "steel_note", "food_note", "wood_note")]
+[sub_resource type="LabelSettings" id="LabelSettings_n04ve"]
+font = ExtResource("7_mg6lk")
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_5q4fb"]
+font = ExtResource("5_wunin")
+font_size = 24
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("ui", "money_number", "steel_number", "food_number", "wood_number", "money_timer", "steel_timer", "food_timer", "wood_timer", "money_note", "steel_note", "food_note", "wood_note", "craft_menu", "draft_menu", "build_menu", "level_1_weapon_amount", "level_2_weapon_amount", "level_3_weapon_amount", "level_1_armor_amount", "level_2_armor_amount", "level_3_armor_amount", "level_1_tank_amount", "level_2_tank_amount", "level_3_tank_amount")]
 script = ExtResource("1_xjg7p")
+ui = NodePath(".")
 money_number = NodePath("Money Control/Money Label")
 steel_number = NodePath("Steel Control/Steel Label")
 food_number = NodePath("Food Control/Food Label")
@@ -30,6 +49,18 @@ money_note = NodePath("Money Control/Money Note")
 steel_note = NodePath("Steel Control/Money Note")
 food_note = NodePath("Food Control/Money Note")
 wood_note = NodePath("Wood Control/Money Note")
+craft_menu = NodePath("Craft Menu")
+draft_menu = NodePath("Draft Menu")
+build_menu = NodePath("Build Menu")
+level_1_weapon_amount = NodePath("Craft Menu/Inventory/Inventory/Inventory/Level 1 Weapon/Amount")
+level_2_weapon_amount = NodePath("Craft Menu/Inventory/Inventory/Inventory/Level 2 Weapon/Amount")
+level_3_weapon_amount = NodePath("Craft Menu/Inventory/Inventory/Inventory/Level 3 Weapon/Amount")
+level_1_armor_amount = NodePath("Craft Menu/Inventory/Inventory/Inventory/Level 1 Armor/Amount")
+level_2_armor_amount = NodePath("Craft Menu/Inventory/Inventory/Inventory/Level 2 Armor/Amount")
+level_3_armor_amount = NodePath("Craft Menu/Inventory/Inventory/Inventory/Level 3 Armor/Amount")
+level_1_tank_amount = NodePath("Craft Menu/Inventory/Inventory/Inventory/Level 1 Tank/Amount")
+level_2_tank_amount = NodePath("Craft Menu/Inventory/Inventory/Inventory/Level 2 Tank/Amount")
+level_3_tank_amount = NodePath("Craft Menu/Inventory/Inventory/Inventory/Level 3 Tank/Amount")
 
 [node name="Money Control" type="Control" parent="."]
 layout_mode = 3
@@ -59,6 +90,8 @@ horizontal_alignment = 2
 [node name="Money Timer" type="Timer" parent="Money Control"]
 
 [node name="Money Note" type="ColorRect" parent="Money Control"]
+visible = false
+z_index = 2
 layout_mode = 0
 anchor_left = 0.214286
 anchor_top = 0.5
@@ -114,6 +147,8 @@ horizontal_alignment = 2
 [node name="Steel Timer" type="Timer" parent="Steel Control"]
 
 [node name="Money Note" type="ColorRect" parent="Steel Control"]
+visible = false
+z_index = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.107015
@@ -169,6 +204,8 @@ horizontal_alignment = 2
 [node name="Food Timer" type="Timer" parent="Food Control"]
 
 [node name="Money Note" type="ColorRect" parent="Food Control"]
+visible = false
+z_index = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.214286
@@ -223,6 +260,8 @@ horizontal_alignment = 2
 [node name="Wood Timer" type="Timer" parent="Wood Control"]
 
 [node name="Money Note" type="ColorRect" parent="Wood Control"]
+visible = false
+z_index = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.214286
@@ -248,6 +287,983 @@ BASIC ARMOR"
 label_settings = SubResource("LabelSettings_j04uc")
 metadata/_edit_use_anchors_ = true
 
+[node name="Craft Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1540.0
+offset_top = 130.0
+offset_right = 1680.0
+offset_bottom = 340.0
+
+[node name="Craft Button" type="TextureButton" parent="Craft Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.000285775
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.04
+offset_right = 420.0
+offset_bottom = -90.0
+rotation = 1.5708
+scale = Vector2(0.5, 1.167)
+action_mode = 0
+texture_normal = ExtResource("1_w371h")
+texture_hover = ExtResource("9_wunin")
+metadata/_edit_use_anchors_ = true
+
+[node name="CraftButton" type="Sprite2D" parent="Craft Control"]
+position = Vector2(70, 115)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("10_b1goy")
+
+[node name="Draft Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1540.0
+offset_top = 345.0
+offset_right = 1680.0
+offset_bottom = 555.0
+
+[node name="Draft Button" type="TextureButton" parent="Draft Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.000285775
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.04
+offset_right = 420.0
+offset_bottom = -90.0
+rotation = 1.5708
+scale = Vector2(0.5, 1.167)
+texture_normal = ExtResource("1_w371h")
+texture_hover = ExtResource("9_wunin")
+metadata/_edit_use_anchors_ = true
+
+[node name="DraftButton" type="Sprite2D" parent="Draft Control"]
+position = Vector2(70, 105)
+texture = ExtResource("11_vqx31")
+
+[node name="Build Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1540.0
+offset_top = 560.0
+offset_right = 1680.0
+offset_bottom = 770.0
+
+[node name="Build Button" type="TextureButton" parent="Build Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.000285775
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.04
+offset_right = 420.0
+offset_bottom = -90.0
+rotation = 1.5708
+scale = Vector2(0.5, 1.167)
+texture_normal = ExtResource("1_w371h")
+texture_hover = ExtResource("9_wunin")
+metadata/_edit_use_anchors_ = true
+
+[node name="BuildButton" type="Sprite2D" parent="Build Control"]
+position = Vector2(70, 105)
+texture = ExtResource("10_j04uc")
+
+[node name="Craft Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 130.0
+offset_right = 1519.0
+offset_bottom = 941.0
+
+[node name="MenuBackground" type="Sprite2D" parent="Craft Menu"]
+position = Vector2(745, 405)
+scale = Vector2(1, 0.75)
+texture = ExtResource("13_n04ve")
+
+[node name="Inventory" type="Control" parent="Craft Menu"]
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 500.0
+offset_bottom = 800.0
+
+[node name="Inventory Symbol" type="Sprite2D" parent="Craft Menu/Inventory"]
+position = Vector2(245, 95)
+texture = ExtResource("9_wunin")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory Symbol"]
+anchors_preset = -1
+anchor_top = 0.166667
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -210.0
+offset_top = -60.0
+offset_right = -210.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "INVENTORY"
+label_settings = SubResource("LabelSettings_n04ve")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Inventory" type="ScrollContainer" parent="Craft Menu/Inventory"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 175.0
+offset_right = 459.0
+offset_bottom = 755.0
+horizontal_scroll_mode = 0
+
+[node name="Inventory" type="VBoxContainer" parent="Craft Menu/Inventory/Inventory"]
+layout_mode = 2
+
+[node name="Level 1 Weapon" type="TextureRect" parent="Craft Menu/Inventory/Inventory/Inventory"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 1 Weapon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 1 WEAPON"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 1 Weapon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.955118
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "0"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 2 Weapon" type="TextureRect" parent="Craft Menu/Inventory/Inventory/Inventory"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 2 Weapon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 2 WEAPON"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 2 Weapon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.955118
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "0"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 3 Weapon" type="TextureRect" parent="Craft Menu/Inventory/Inventory/Inventory"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 3 Weapon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 3 WEAPON"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 3 Weapon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.955118
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "0"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 1 Armor" type="TextureRect" parent="Craft Menu/Inventory/Inventory/Inventory"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 1 Armor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 1 ARMOR"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 1 Armor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.955118
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "0"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 2 Armor" type="TextureRect" parent="Craft Menu/Inventory/Inventory/Inventory"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 2 Armor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 2 ARMOR"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 2 Armor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.955118
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "0"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 3 Armor" type="TextureRect" parent="Craft Menu/Inventory/Inventory/Inventory"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 3 Armor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 3 ARMOR"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 3 Armor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.955118
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "0"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 1 Tank" type="TextureRect" parent="Craft Menu/Inventory/Inventory/Inventory"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 1 Tank"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 1 TANK"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 1 Tank"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.955118
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "0"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 2 Tank" type="TextureRect" parent="Craft Menu/Inventory/Inventory/Inventory"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 2 Tank"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 1 TANK"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 2 Tank"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.955118
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "0"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 3 Tank" type="TextureRect" parent="Craft Menu/Inventory/Inventory/Inventory"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 3 Tank"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 1 TANK"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="Label" parent="Craft Menu/Inventory/Inventory/Inventory/Level 3 Tank"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.955118
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "x0"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft" type="Control" parent="Craft Menu"]
+anchors_preset = 0
+offset_left = 486.0
+offset_top = 45.0
+offset_right = 1431.0
+offset_bottom = 764.0
+
+[node name="Craft Symbol" type="Sprite2D" parent="Craft Menu/Craft"]
+position = Vector2(473, 60)
+scale = Vector2(2.25, 1)
+texture = ExtResource("9_wunin")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft Symbol"]
+anchors_preset = -1
+anchor_top = 0.166667
+anchor_right = 0.999
+anchor_bottom = 1.0
+offset_left = -210.0
+offset_top = -60.0
+offset_right = 315.42
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.444, 1)
+text = "CRAFTING"
+label_settings = SubResource("LabelSettings_n04ve")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft" type="ScrollContainer" parent="Craft Menu/Craft"]
+offset_left = 1.0
+offset_top = 139.0
+offset_right = 946.0
+offset_bottom = 719.0
+horizontal_scroll_mode = 0
+
+[node name="Inventory" type="VBoxContainer" parent="Craft Menu/Craft/Craft"]
+layout_mode = 2
+
+[node name="Craft Level 1 Weapon" type="HBoxContainer" parent="Craft Menu/Craft/Craft/Inventory"]
+layout_mode = 2
+
+[node name="Level 1 Weapon" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Weapon"]
+layout_mode = 2
+texture = ExtResource("15_5q4fb")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Weapon/Level 1 Weapon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 1 WEAPON"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 1 Weapon Material" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Weapon"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Weapon/Level 1 Weapon Material"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "Material for level 1
+weapon"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Weapon" node_paths=PackedStringArray("ui")]
+layout_mode = 2
+texture_normal = ExtResource("16_jnovg")
+texture_hover = ExtResource("17_13dyv")
+script = ExtResource("15_13dyv")
+product = "level_1_weapon"
+ui = NodePath("../../../../../..")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Weapon/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00460829
+anchor_top = 0.05
+anchor_right = 0.963823
+anchor_bottom = 1.00833
+offset_right = 7.85046
+text = "CRAFT"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft Level 2 Weapon" type="HBoxContainer" parent="Craft Menu/Craft/Craft/Inventory"]
+layout_mode = 2
+
+[node name="Level 2 Weapon" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Weapon"]
+layout_mode = 2
+texture = ExtResource("15_5q4fb")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Weapon/Level 2 Weapon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 2 WEAPON"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 2 Weapon Material" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Weapon"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Weapon/Level 2 Weapon Material"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "Material for level 1
+weapon"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Weapon" node_paths=PackedStringArray("ui")]
+layout_mode = 2
+texture_normal = ExtResource("16_jnovg")
+texture_hover = ExtResource("17_13dyv")
+script = ExtResource("15_13dyv")
+product = "level_2_weapon"
+ui = NodePath("../../../../../..")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Weapon/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00460829
+anchor_top = 0.05
+anchor_right = 0.963823
+anchor_bottom = 1.00833
+offset_right = 7.85046
+text = "CRAFT"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft Level 3 Weapon" type="HBoxContainer" parent="Craft Menu/Craft/Craft/Inventory"]
+layout_mode = 2
+
+[node name="Level 3 Weapon" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Weapon"]
+layout_mode = 2
+texture = ExtResource("15_5q4fb")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Weapon/Level 3 Weapon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 3 WEAPON"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 3 Weapon Material" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Weapon"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Weapon/Level 3 Weapon Material"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "Material for level 1
+weapon"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Weapon" node_paths=PackedStringArray("ui")]
+layout_mode = 2
+texture_normal = ExtResource("16_jnovg")
+texture_hover = ExtResource("17_13dyv")
+script = ExtResource("15_13dyv")
+product = "level_3_weapon"
+ui = NodePath("../../../../../..")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Weapon/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00460829
+anchor_top = 0.05
+anchor_right = 0.963823
+anchor_bottom = 1.00833
+offset_right = 7.85046
+text = "CRAFT"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft Level 1 Armor" type="HBoxContainer" parent="Craft Menu/Craft/Craft/Inventory"]
+layout_mode = 2
+
+[node name="Level 1 Armor" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Armor"]
+layout_mode = 2
+texture = ExtResource("15_5q4fb")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Armor/Level 1 Armor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 1 ARMOR"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 1 Armor Material" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Armor"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Armor/Level 1 Armor Material"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "Material for level 1
+weapon"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Armor" node_paths=PackedStringArray("ui")]
+layout_mode = 2
+texture_normal = ExtResource("16_jnovg")
+texture_hover = ExtResource("17_13dyv")
+script = ExtResource("15_13dyv")
+product = "level_1_armor"
+ui = NodePath("../../../../../..")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Armor/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00460829
+anchor_top = 0.05
+anchor_right = 0.963823
+anchor_bottom = 1.00833
+offset_right = 7.85046
+text = "CRAFT"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft Level 2 Armor" type="HBoxContainer" parent="Craft Menu/Craft/Craft/Inventory"]
+layout_mode = 2
+
+[node name="Level 2 Armor" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Armor"]
+layout_mode = 2
+texture = ExtResource("15_5q4fb")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Armor/Level 2 Armor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 2 ARMOR"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 2 Armor Material" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Armor"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Armor/Level 2 Armor Material"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "Material for level 1
+weapon"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Armor" node_paths=PackedStringArray("ui")]
+layout_mode = 2
+texture_normal = ExtResource("16_jnovg")
+texture_hover = ExtResource("17_13dyv")
+script = ExtResource("15_13dyv")
+product = "level_2_armor"
+ui = NodePath("../../../../../..")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Armor/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00460829
+anchor_top = 0.05
+anchor_right = 0.963823
+anchor_bottom = 1.00833
+offset_right = 7.85046
+text = "CRAFT"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft Level 3 Armor" type="HBoxContainer" parent="Craft Menu/Craft/Craft/Inventory"]
+layout_mode = 2
+
+[node name="Level 3 Armor" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Armor"]
+layout_mode = 2
+texture = ExtResource("15_5q4fb")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Armor/Level 3 Armor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 3 ARMOR"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 3 Armor Material" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Armor"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Armor/Level 3 Armor Material"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "Material for level 1
+weapon"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Armor" node_paths=PackedStringArray("ui")]
+layout_mode = 2
+texture_normal = ExtResource("16_jnovg")
+texture_hover = ExtResource("17_13dyv")
+script = ExtResource("15_13dyv")
+product = "level_3_armor"
+ui = NodePath("../../../../../..")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Armor/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00460829
+anchor_top = 0.05
+anchor_right = 0.963823
+anchor_bottom = 1.00833
+offset_right = 7.85046
+text = "CRAFT"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft Level 1 Tank" type="HBoxContainer" parent="Craft Menu/Craft/Craft/Inventory"]
+layout_mode = 2
+
+[node name="Level 1 Tank" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Tank"]
+layout_mode = 2
+texture = ExtResource("15_5q4fb")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Tank/Level 1 Tank"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 1 TANK"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 1 Tank Material" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Tank"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Tank/Level 1 Tank Material"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "Material for level 1
+weapon"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Tank" node_paths=PackedStringArray("ui")]
+layout_mode = 2
+texture_normal = ExtResource("16_jnovg")
+texture_hover = ExtResource("17_13dyv")
+script = ExtResource("15_13dyv")
+product = "level_1_tank"
+ui = NodePath("../../../../../..")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Tank/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00460829
+anchor_top = 0.05
+anchor_right = 0.963823
+anchor_bottom = 1.00833
+offset_right = 7.85046
+text = "CRAFT"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft Level 2 Tank" type="HBoxContainer" parent="Craft Menu/Craft/Craft/Inventory"]
+layout_mode = 2
+
+[node name="Level 2 Tank" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Tank"]
+layout_mode = 2
+texture = ExtResource("15_5q4fb")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Tank/Level 2 Tank"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 2 TANK"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 1 Weapon Material" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Tank"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Tank/Level 1 Weapon Material"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "Material for level 1
+weapon"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Tank" node_paths=PackedStringArray("ui")]
+layout_mode = 2
+texture_normal = ExtResource("16_jnovg")
+texture_hover = ExtResource("17_13dyv")
+script = ExtResource("15_13dyv")
+product = "level_2_tank"
+ui = NodePath("../../../../../..")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Tank/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00460829
+anchor_top = 0.05
+anchor_right = 0.963823
+anchor_bottom = 1.00833
+offset_right = 7.85046
+text = "CRAFT"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Craft Level 3 Tank" type="HBoxContainer" parent="Craft Menu/Craft/Craft/Inventory"]
+layout_mode = 2
+
+[node name="Level 3 Tank" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Tank"]
+layout_mode = 2
+texture = ExtResource("15_5q4fb")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Tank/Level 3 Tank"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "LEVEL 3 TANK"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level 3 Tank Material" type="TextureRect" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Tank"]
+layout_mode = 2
+texture = ExtResource("14_wi7yl")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Tank/Level 3 Tank Material"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0261905
+anchor_right = 0.981308
+anchor_bottom = 1.0122
+offset_right = 7.85046
+text = "Material for level 1
+weapon"
+label_settings = SubResource("LabelSettings_5q4fb")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Tank" node_paths=PackedStringArray("ui")]
+layout_mode = 2
+texture_normal = ExtResource("16_jnovg")
+texture_hover = ExtResource("17_13dyv")
+script = ExtResource("15_13dyv")
+product = "level_3_tank"
+ui = NodePath("../../../../../..")
+
+[node name="Label" type="Label" parent="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Tank/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00460829
+anchor_top = 0.05
+anchor_right = 0.963823
+anchor_bottom = 1.00833
+offset_right = 7.85046
+text = "CRAFT"
+label_settings = SubResource("LabelSettings_5q4fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Draft Menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 130.0
+offset_right = 1519.0
+offset_bottom = 941.0
+
+[node name="MenuBackground" type="Sprite2D" parent="Draft Menu"]
+position = Vector2(745, 405)
+scale = Vector2(1, 0.75)
+texture = ExtResource("13_n04ve")
+
+[node name="Build Menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 130.0
+offset_right = 1520.0
+offset_bottom = 941.0
+
+[node name="MenuBackground" type="Sprite2D" parent="Build Menu"]
+position = Vector2(745, 405)
+scale = Vector2(1, 0.75)
+texture = ExtResource("13_n04ve")
+
 [connection signal="mouse_entered" from="Money Control" to="." method="_on_money_control_mouse_entered"]
 [connection signal="mouse_exited" from="Money Control" to="." method="_on_money_control_mouse_exited"]
 [connection signal="timeout" from="Money Control/Money Timer" to="." method="_on_money_timer_timeout"]
@@ -260,3 +1276,23 @@ metadata/_edit_use_anchors_ = true
 [connection signal="mouse_entered" from="Wood Control" to="." method="_on_wood_control_mouse_entered"]
 [connection signal="mouse_exited" from="Wood Control" to="." method="_on_wood_control_mouse_exited"]
 [connection signal="timeout" from="Wood Control/Wood Timer" to="." method="_on_wood_timer_timeout"]
+[connection signal="mouse_entered" from="Craft Control" to="." method="_on_craft_control_mouse_entered"]
+[connection signal="mouse_exited" from="Craft Control" to="." method="_on_craft_control_mouse_exited"]
+[connection signal="pressed" from="Craft Control/Craft Button" to="." method="_on_craft_button_pressed"]
+[connection signal="mouse_entered" from="Draft Control" to="." method="_on_draft_control_mouse_entered"]
+[connection signal="mouse_exited" from="Draft Control" to="." method="_on_draft_control_mouse_exited"]
+[connection signal="pressed" from="Draft Control/Draft Button" to="." method="_on_draft_button_pressed"]
+[connection signal="mouse_entered" from="Build Control" to="." method="_on_build_control_mouse_entered"]
+[connection signal="mouse_exited" from="Build Control" to="." method="_on_build_control_mouse_exited"]
+[connection signal="pressed" from="Build Control/Build Button" to="." method="_on_build_button_pressed"]
+[connection signal="mouse_entered" from="Craft Menu" to="." method="_on_craft_menu_mouse_entered"]
+[connection signal="mouse_exited" from="Craft Menu" to="." method="_on_craft_menu_mouse_exited"]
+[connection signal="pressed" from="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Weapon/TextureButton" to="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Weapon/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Weapon/TextureButton" to="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Weapon/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Weapon/TextureButton" to="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Weapon/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Armor/TextureButton" to="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Armor/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Armor/TextureButton" to="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Armor/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Armor/TextureButton" to="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Armor/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Tank/TextureButton" to="Craft Menu/Craft/Craft/Inventory/Craft Level 1 Tank/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Tank/TextureButton" to="Craft Menu/Craft/Craft/Inventory/Craft Level 2 Tank/TextureButton" method="_on_pressed"]
+[connection signal="pressed" from="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Tank/TextureButton" to="Craft Menu/Craft/Craft/Inventory/Craft Level 3 Tank/TextureButton" method="_on_pressed"]
