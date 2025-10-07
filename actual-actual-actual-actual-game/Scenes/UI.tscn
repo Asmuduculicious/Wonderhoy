@@ -1,3 +1,262 @@
-[gd_scene format=3 uid="uid://bs0lxe67csf5i"]
+[gd_scene load_steps=11 format=3 uid="uid://bs0lxe67csf5i"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[ext_resource type="Texture2D" uid="uid://bb2qmubv6marr" path="res://Resources/Main Button.png" id="1_w371h"]
+[ext_resource type="Script" uid="uid://dqjhmms4wmpf5" path="res://Scripts/UI.gd" id="1_xjg7p"]
+[ext_resource type="Texture2D" uid="uid://bqj3hd28wvmkn" path="res://Resources/Money.png" id="2_qwshj"]
+[ext_resource type="Texture2D" uid="uid://um6k0ng87l5i" path="res://Resources/Steel.png" id="3_48q88"]
+[ext_resource type="Texture2D" uid="uid://cal12yd6cr6vj" path="res://Resources/Supply.png" id="4_xjg7p"]
+[ext_resource type="Texture2D" uid="uid://bye6m8gkx3ibu" path="res://Resources/Wood.png" id="5_mg6lk"]
+[ext_resource type="FontFile" uid="uid://dxpnk42n08j66" path="res://Resources/stencilla.ttf" id="5_wunin"]
+[ext_resource type="FontFile" uid="uid://d4emax0tb4glp" path="res://Resources/stencil-Regular.ttf" id="7_mg6lk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wunin"]
+font = ExtResource("7_mg6lk")
+font_size = 90
+
+[sub_resource type="LabelSettings" id="LabelSettings_j04uc"]
+font = ExtResource("5_wunin")
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("money_number", "steel_number", "food_number", "wood_number", "money_timer", "steel_timer", "food_timer", "wood_timer", "money_note", "steel_note", "food_note", "wood_note")]
+script = ExtResource("1_xjg7p")
+money_number = NodePath("Money Control/Money Label")
+steel_number = NodePath("Steel Control/Steel Label")
+food_number = NodePath("Food Control/Food Label")
+wood_number = NodePath("Wood Control/Wood Label")
+money_timer = NodePath("Money Control/Money Timer")
+steel_timer = NodePath("Steel Control/Steel Timer")
+food_timer = NodePath("Food Control/Food Timer")
+wood_timer = NodePath("Wood Control/Wood Timer")
+money_note = NodePath("Money Control/Money Note")
+steel_note = NodePath("Steel Control/Money Note")
+food_note = NodePath("Food Control/Money Note")
+wood_note = NodePath("Wood Control/Money Note")
+
+[node name="Money Control" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.25
+anchor_bottom = 0.114286
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Money Control"]
+position = Vector2(210, 60)
+texture = ExtResource("1_w371h")
+
+[node name="Money" type="Sprite2D" parent="Money Control"]
+position = Vector2(88, 60)
+scale = Vector2(2, 2)
+texture = ExtResource("2_qwshj")
+
+[node name="Money Label" type="Label" parent="Money Control"]
+offset_left = 177.0
+offset_top = 25.0
+offset_right = 360.0
+offset_bottom = 116.0
+scale = Vector2(1.2, 1)
+text = "123456"
+label_settings = SubResource("LabelSettings_wunin")
+horizontal_alignment = 2
+
+[node name="Money Timer" type="Timer" parent="Money Control"]
+
+[node name="Money Note" type="ColorRect" parent="Money Control"]
+layout_mode = 0
+anchor_left = 0.214286
+anchor_top = 0.5
+anchor_right = 0.785714
+anchor_bottom = 1.80833
+color = Color(0.74, 0.74, 0.74, 0.705882)
+metadata/_edit_use_anchors_ = true
+
+[node name="Money Text" type="Label" parent="Money Control/Money Note"]
+layout_mode = 0
+anchor_top = 0.0254777
+anchor_right = 1.0
+anchor_bottom = 1.09554
+text = "MONEY IS THE MOST 
+VERSATILE RESOURCE
+IN THE GAME.
+
+USES:
+BUILD BUILDINGS
+DRAFT ARMIES
+PURCHASE RESOURCES
+"
+label_settings = SubResource("LabelSettings_j04uc")
+metadata/_edit_use_anchors_ = true
+
+[node name="Steel Control" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.25
+anchor_right = 0.750595
+anchor_bottom = 0.113333
+grow_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Steel Control"]
+position = Vector2(210, 60)
+texture = ExtResource("1_w371h")
+
+[node name="Steel" type="Sprite2D" parent="Steel Control"]
+position = Vector2(88, 61)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_48q88")
+
+[node name="Steel Label" type="Label" parent="Steel Control"]
+offset_left = 180.0
+offset_top = 26.0
+offset_right = 363.0
+offset_bottom = 117.0
+scale = Vector2(1.2, 1)
+text = "123456"
+label_settings = SubResource("LabelSettings_wunin")
+horizontal_alignment = 2
+
+[node name="Steel Timer" type="Timer" parent="Steel Control"]
+
+[node name="Money Note" type="ColorRect" parent="Steel Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.107015
+anchor_top = 0.504202
+anchor_right = 0.39239
+anchor_bottom = 1.82353
+color = Color(0.74, 0.74, 0.74, 0.705882)
+metadata/_edit_use_anchors_ = true
+
+[node name="Money Text" type="Label" parent="Steel Control/Money Note"]
+layout_mode = 0
+anchor_top = 0.0254777
+anchor_right = 1.0
+anchor_bottom = 1.09554
+text = "STEEL IS ADVANCED
+RESOURCE TO BUILD
+EQUIPMENT AND BUILD
+
+USES:
+BUILD BUILDINGS
+CRAFT WEAPONS
+STRENGTHEN ARMOR
+"
+label_settings = SubResource("LabelSettings_j04uc")
+metadata/_edit_use_anchors_ = true
+
+[node name="Food Control" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.5
+anchor_right = 0.75
+anchor_bottom = 0.114286
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Food Control"]
+position = Vector2(210, 60)
+texture = ExtResource("1_w371h")
+
+[node name="Food" type="Sprite2D" parent="Food Control"]
+position = Vector2(72.0001, 60)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("4_xjg7p")
+
+[node name="Food Label" type="Label" parent="Food Control"]
+offset_left = 180.0
+offset_top = 26.0
+offset_right = 363.0
+offset_bottom = 117.0
+scale = Vector2(1.2, 1)
+text = "123456"
+label_settings = SubResource("LabelSettings_wunin")
+horizontal_alignment = 2
+
+[node name="Food Timer" type="Timer" parent="Food Control"]
+
+[node name="Money Note" type="ColorRect" parent="Food Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.214286
+anchor_top = 0.5
+anchor_right = 0.785714
+anchor_bottom = 1.80833
+color = Color(0.74, 0.74, 0.74, 0.705882)
+metadata/_edit_use_anchors_ = true
+
+[node name="Money Text" type="Label" parent="Food Control/Money Note"]
+layout_mode = 0
+anchor_top = 0.0254777
+anchor_right = 1.0
+anchor_bottom = 1.09554
+text = "FOOD IS THE MOST
+BASIC RESOURCE
+NEEDED FOR TROOPS
+
+USES:
+FEED TROOPS
+FEED CRAFTERS
+TRADE WITH TRADERS"
+label_settings = SubResource("LabelSettings_j04uc")
+metadata/_edit_use_anchors_ = true
+
+[node name="Wood Control" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 0.114286
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Wood Control"]
+position = Vector2(210, 60)
+texture = ExtResource("1_w371h")
+
+[node name="Wood" type="Sprite2D" parent="Wood Control"]
+position = Vector2(82.0001, 60)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("5_mg6lk")
+
+[node name="Wood Label" type="Label" parent="Wood Control"]
+offset_left = 178.0
+offset_top = 26.0
+offset_right = 361.0
+offset_bottom = 117.0
+scale = Vector2(1.2, 1)
+text = "123456"
+label_settings = SubResource("LabelSettings_wunin")
+horizontal_alignment = 2
+
+[node name="Wood Timer" type="Timer" parent="Wood Control"]
+
+[node name="Money Note" type="ColorRect" parent="Wood Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.214286
+anchor_top = 0.5
+anchor_right = 0.785714
+anchor_bottom = 1.80833
+color = Color(0.74, 0.74, 0.74, 0.705882)
+metadata/_edit_use_anchors_ = true
+
+[node name="Money Text" type="Label" parent="Wood Control/Money Note"]
+layout_mode = 0
+anchor_top = 0.0254777
+anchor_right = 1.0
+anchor_bottom = 1.09554
+text = "WOOD IS THE BASIC
+RESOURCES NEEDED
+FOR CRAFTING
+
+USES:
+BUILD BUILDINGS
+CRAFT WEAPONS
+BASIC ARMOR"
+label_settings = SubResource("LabelSettings_j04uc")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="Money Control" to="." method="_on_money_control_mouse_entered"]
+[connection signal="mouse_exited" from="Money Control" to="." method="_on_money_control_mouse_exited"]
+[connection signal="timeout" from="Money Control/Money Timer" to="." method="_on_money_timer_timeout"]
+[connection signal="mouse_entered" from="Steel Control" to="." method="_on_steel_control_mouse_entered"]
+[connection signal="mouse_exited" from="Steel Control" to="." method="_on_steel_control_mouse_exited"]
+[connection signal="timeout" from="Steel Control/Steel Timer" to="." method="_on_steel_timer_timeout"]
+[connection signal="mouse_entered" from="Food Control" to="." method="_on_food_control_mouse_entered"]
+[connection signal="mouse_exited" from="Food Control" to="." method="_on_food_control_mouse_exited"]
+[connection signal="timeout" from="Food Control/Food Timer" to="." method="_on_food_timer_timeout"]
+[connection signal="mouse_entered" from="Wood Control" to="." method="_on_wood_control_mouse_entered"]
+[connection signal="mouse_exited" from="Wood Control" to="." method="_on_wood_control_mouse_exited"]
+[connection signal="timeout" from="Wood Control/Wood Timer" to="." method="_on_wood_timer_timeout"]
