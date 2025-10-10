@@ -1,0 +1,153 @@
+[gd_scene load_steps=6 format=3 uid="uid://8bobghoadqsn"]
+
+[ext_resource type="Script" uid="uid://buf7k48rc7dfd" path="res://Scripts/army_list.gd" id="2_i10jh"]
+[ext_resource type="Texture2D" uid="uid://drgy0y18b3u2x" path="res://Resources/Background and Buttons/Bright 500x81.png" id="3_i10jh"]
+[ext_resource type="Texture2D" uid="uid://dox58rwx8wwl6" path="res://Resources/Background and Buttons/Bright 191x40.png" id="4_ebb4q"]
+[ext_resource type="FontFile" uid="uid://d4emax0tb4glp" path="res://Resources/Fonts/stencil-Regular.ttf" id="5_ebb4q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ntopw"]
+font = ExtResource("5_ebb4q")
+font_size = 40
+
+[node name="Background" type="ColorRect" node_paths=PackedStringArray("army_name_label", "type_label", "hp_label", "atk_label", "def_label", "weapon", "armor")]
+custom_minimum_size = Vector2(0, 83)
+anchors_preset = -1
+anchor_right = 0.411905
+anchor_bottom = 0.0790476
+color = Color(1, 1, 1, 0)
+script = ExtResource("2_i10jh")
+army_name_label = NodePath("Texts/Name")
+type_label = NodePath("Texts/Type")
+hp_label = NodePath("Texts/HP")
+atk_label = NodePath("Texts/ATK")
+def_label = NodePath("Texts/DEF")
+weapon = NodePath("HBoxContainer/VBoxContainer/TextureRect/OptionButton")
+armor = NodePath("HBoxContainer/VBoxContainer/TextureRect3/OptionButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_i10jh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_ebb4q")
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer/TextureRect"]
+layout_mode = 0
+anchor_right = 1.00524
+anchor_bottom = 1.0
+offset_right = 1.52588e-05
+selected = 0
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_ebb4q")
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer/TextureRect3"]
+layout_mode = 0
+anchor_right = 1.00524
+anchor_bottom = 1.0
+offset_right = 1.52588e-05
+selected = 0
+
+[node name="Texts" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name" type="Label" parent="Texts"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.496386
+anchor_right = 0.704046
+anchor_bottom = 1.26747
+offset_left = 8.0
+offset_top = 4.14458
+offset_right = 60.8382
+offset_bottom = 13.3012
+text = "NAME"
+label_settings = SubResource("LabelSettings_ntopw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Type" type="Label" parent="Texts"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.738728
+anchor_top = 0.496386
+anchor_right = 0.842775
+anchor_bottom = 1.26747
+offset_left = 98.4509
+offset_top = 4.14458
+offset_right = 152.289
+offset_bottom = 13.3012
+text = "TYPE"
+label_settings = SubResource("LabelSettings_ntopw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HP" type="Label" parent="Texts"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.47746
+anchor_top = 0.496386
+anchor_right = 1.59595
+anchor_bottom = 1.26747
+offset_left = 180.902
+offset_top = 4.14456
+offset_right = 205.162
+offset_bottom = 13.3012
+text = "HP"
+label_settings = SubResource("LabelSettings_ntopw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ATK" type="Label" parent="Texts"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.21619
+anchor_top = 0.496385
+anchor_right = 1.32023
+anchor_bottom = 1.26747
+offset_left = 275.353
+offset_top = 4.1446
+offset_right = 314.191
+offset_bottom = 13.3012
+text = "ATK"
+label_settings = SubResource("LabelSettings_ntopw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DEF" type="Label" parent="Texts"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.55491
+anchor_top = 0.496385
+anchor_right = 1.65318
+anchor_bottom = 1.26747
+offset_left = 357.803
+offset_top = 4.1446
+offset_right = 396.873
+offset_bottom = 13.3012
+text = "DEF"
+label_settings = SubResource("LabelSettings_ntopw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/TextureRect/OptionButton" to="." method="_on_weapon_button_item_selected"]
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/TextureRect3/OptionButton" to="." method="_on_armor_button_item_selected"]

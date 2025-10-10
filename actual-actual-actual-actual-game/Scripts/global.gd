@@ -28,3 +28,5 @@ var level_3_armor_available = 0
 var level_1_tank_available = 0
 var level_2_tank_available = 0
 var level_3_tank_available = 0
+
+var army_list = []

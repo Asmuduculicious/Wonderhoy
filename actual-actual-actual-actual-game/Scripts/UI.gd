@@ -31,9 +31,12 @@ extends CanvasLayer
 @export var level_2_tank_amount: Node
 @export var level_3_tank_amount: Node
 
+@export var army_list: Node
+@export var army: PackedScene
 
 func _ready() -> void:
 	_update_resources()
+	_update_soldiers()
 	money_note.visible = false
 	steel_note.visible = false
 	food_note.visible = false
@@ -56,10 +59,25 @@ func _update_equipment() -> void:
 	level_1_armor_amount.text = str(global.level_1_armor_available)
 	level_2_armor_amount.text = str(global.level_2_armor_available)
 	level_3_armor_amount.text = str(global.level_3_armor_available)
-	level_1_armor_amount.text = str(global.level_1_armor_available)
-	level_2_armor_amount.text = str(global.level_2_armor_available)
-	level_3_armor_amount.text = str(global.level_3_armor_available)
-	
+	level_1_tank_amount.text = str(global.level_1_tank_available)
+	level_2_tank_amount.text = str(global.level_2_tank_available)
+	level_3_tank_amount.text = str(global.level_3_tank_available)
+
+func _update_soldiers() -> void:
+	for i in range(army_list.get_child_count()):
+		army_list.get_child(i).queue_free()
+
+	for i in range(global.army_list.size()):
+		var army_indivisual = army.instantiate()
+		army_indivisual.army_name = global.army_list[i][0]
+		army_indivisual.type = global.army_list[i][1]
+		army_indivisual.hp = global.army_list[i][2]
+		army_indivisual.current_hp = global.army_list[i][3]
+		army_indivisual.atk = global.army_list[i][4]
+		army_indivisual.def = global.army_list[i][5]
+		army_indivisual.current_weapon = global.army_list[i][6]
+		army_indivisual.current_armor = global.army_list[i][7]
+		army_list.add_child(army_indivisual)
 
 func _on_money_control_mouse_entered() -> void:
 	global.in_UI = true
@@ -130,15 +148,18 @@ func _on_build_control_mouse_exited() -> void:
 func _on_craft_button_pressed() -> void:
 	if craft_menu.visible == true:
 		craft_menu.visible = false
+		
 	elif craft_menu.visible == false:
 		craft_menu.visible = true
 		draft_menu.visible = false
 		build_menu.visible = false
 
+
 func _on_draft_button_pressed() -> void:
 	if draft_menu.visible == true:
 		draft_menu.visible = false
 	elif draft_menu.visible == false:
+		_update_soldiers()
 		draft_menu.visible = true
 		craft_menu.visible = false
 		build_menu.visible = false
@@ -156,3 +177,12 @@ func _on_craft_menu_mouse_entered() -> void:
 
 func _on_craft_menu_mouse_exited() -> void:
 	global.in_UI = false
+
+func _on_draft_menu_mouse_entered() -> void:
+	global.in_UI = true
+
+func _on_draft_menu_mouse_exited() -> void:
+	global.in_UI = false
+
+func _draft_soldier() -> void:
+	pass
