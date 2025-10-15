@@ -30,3 +30,13 @@ var level_2_tank_available = 0
 var level_3_tank_available = 0
 
 var army_list = []
+
+var tile = []
+var home_tile = Vector2i(0,0)
+
+var tile_to_army = {}
+var tile_to_enemy = {}
+var tile_info = {}
+
+var building_mode = false
+var current_building = ""

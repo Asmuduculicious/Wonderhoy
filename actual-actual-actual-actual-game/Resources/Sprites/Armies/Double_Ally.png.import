@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://um6k0ng87l5i"
-path="res://.godot/imported/Steel.png-58e2346a5a5d86cecf5783d2d144db05.ctex"
+uid="uid://vfwpf3xkqaip"
+path="res://.godot/imported/Double_Ally.png-3cd4f5b15edfee416f334e46d4088eeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Steel.png"
-dest_files=["res://.godot/imported/Steel.png-58e2346a5a5d86cecf5783d2d144db05.ctex"]
+source_file="res://Resources/Sprites/Armies/Double_Ally.png"
+dest_files=["res://.godot/imported/Double_Ally.png-3cd4f5b15edfee416f334e46d4088eeb.ctex"]
 
 [params]
 

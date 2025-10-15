@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://6uqigvh0stnq"]
+
+[ext_resource type="Script" uid="uid://ba1undxepa3mi" path="res://Scripts/player_army.gd" id="1_1d2fu"]
+[ext_resource type="Texture2D" uid="uid://dng3gtss5d10m" path="res://Resources/Sprites/Armies/Single_Ally.png" id="2_irhph"]
+[ext_resource type="Texture2D" uid="uid://vfwpf3xkqaip" path="res://Resources/Sprites/Armies/Double_Ally.png" id="3_3pwud"]
+[ext_resource type="Texture2D" uid="uid://qe5v30r1o4a5" path="res://Resources/Sprites/Armies/Multi_Ally.png" id="4_6328i"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("single", "double", "multi")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1d2fu")
+single = NodePath("SingleAlly")
+double = NodePath("DoubleAlly")
+multi = NodePath("MultiAlly")
+
+[node name="SingleAlly" type="Sprite2D" parent="."]
+texture = ExtResource("2_irhph")
+
+[node name="DoubleAlly" type="Sprite2D" parent="."]
+texture = ExtResource("3_3pwud")
+
+[node name="MultiAlly" type="Sprite2D" parent="."]
+texture = ExtResource("4_6328i")

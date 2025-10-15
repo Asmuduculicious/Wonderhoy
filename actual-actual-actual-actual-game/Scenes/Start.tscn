@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://xqvcbk7jfhq0"]
 
-[ext_resource type="Script" uid="uid://djuk6yw0ry0nc" path="res://Scripts/Main.gd" id="1_37b1d"]
+[ext_resource type="Script" uid="uid://djuk6yw0ry0nc" path="res://Scripts/main screen.gd" id="1_37b1d"]
 [ext_resource type="Texture2D" uid="uid://bnv5leb7dt5wp" path="res://Resources/Settings/Main Menu.png" id="1_og4jd"]
 [ext_resource type="FontFile" uid="uid://dxpnk42n08j66" path="res://Resources/Fonts/stencilla.ttf" id="2_1lxxj"]
 [ext_resource type="Texture2D" uid="uid://bb2qmubv6marr" path="res://Resources/Background and Buttons/Dark 420x120.png" id="3_37b1d"]

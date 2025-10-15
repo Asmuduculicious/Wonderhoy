@@ -30,9 +30,12 @@ func _on_pressed() -> void:
 		ui._update_resources()
 		
 		if type == "TD":
-			global.army_list.append([str(global.army_list.size() + 1), type, hp, hp, atk, def, "Level 0 tank", "-"])
+			global.army_list.append([str(global.army_list.size() + 1), type, 
+			hp, hp, atk, def, "Level 0 tank", "-"])
 		else:
-			global.army_list.append([str(global.army_list.size() + 1), type, hp, hp, atk, def, "Level 0 weapon", "Level 0 armor"])
+			global.army_list.append([str(global.army_list.size() + 1), type, 
+			hp, hp, atk, def, "Level 0 weapon", "Level 0 armor"])
 		
 		ui._update_soldiers()
+		ui.get_parent()._spawn_soldier()
 		

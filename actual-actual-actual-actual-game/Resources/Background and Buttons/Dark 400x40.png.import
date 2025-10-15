@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqj3hd28wvmkn"
-path="res://.godot/imported/Money.png-2e36e3a9076be3a16add19ff1496f0a9.ctex"
+uid="uid://chhmqgn12123i"
+path="res://.godot/imported/Dark 400x40.png-1e31031d78f8891558e1d438dd304d45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/Money.png"
-dest_files=["res://.godot/imported/Money.png-2e36e3a9076be3a16add19ff1496f0a9.ctex"]
+source_file="res://Resources/Background and Buttons/Dark 400x40.png"
+dest_files=["res://.godot/imported/Dark 400x40.png-1e31031d78f8891558e1d438dd304d45.ctex"]
 
 [params]
 

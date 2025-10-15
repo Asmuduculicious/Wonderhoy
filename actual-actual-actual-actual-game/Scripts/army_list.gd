@@ -245,7 +245,6 @@ func _on_weapon_button_item_selected(index: int) -> void:
 			
 	for i in get_parent().get_children():
 		i._update_status()
-	get_parent().parent._update_equipment()
 
 
 
@@ -266,4 +265,3 @@ func _on_armor_button_item_selected(index: int) -> void:
 			
 	for i in get_parent().get_children():
 		i._update_status()
-	get_parent().parent._update_equipment()

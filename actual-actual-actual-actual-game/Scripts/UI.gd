@@ -34,6 +34,8 @@ extends CanvasLayer
 @export var army_list: Node
 @export var army: PackedScene
 
+@export var zoom_label: Node
+
 func _ready() -> void:
 	_update_resources()
 	_update_soldiers()
@@ -80,7 +82,7 @@ func _update_soldiers() -> void:
 		army_list.add_child(army_indivisual)
 
 func _on_money_control_mouse_entered() -> void:
-	global.in_UI = true
+	_mouse_entered()
 	money_timer.start()
 	
 func _on_money_timer_timeout() -> void:
@@ -89,10 +91,10 @@ func _on_money_timer_timeout() -> void:
 func _on_money_control_mouse_exited() -> void:
 	money_note.visible = false
 	money_timer.stop()
-	global.in_UI = false
+	_mouse_exited()
 
 func _on_steel_control_mouse_entered() -> void:
-	global.in_UI = true
+	_mouse_entered()
 	steel_timer.start()
 	
 func _on_steel_timer_timeout() -> void:
@@ -101,10 +103,10 @@ func _on_steel_timer_timeout() -> void:
 func _on_steel_control_mouse_exited() -> void:
 	steel_note.visible = false
 	steel_timer.stop()
-	global.in_UI = false
+	_mouse_exited()
 
 func _on_food_control_mouse_entered() -> void:
-	global.in_UI = true
+	_mouse_entered()
 	food_timer.start()
 
 func _on_food_timer_timeout() -> void:
@@ -113,10 +115,10 @@ func _on_food_timer_timeout() -> void:
 func _on_food_control_mouse_exited() -> void:
 	food_note.visible = false
 	food_timer.stop()
-	global.in_UI = false
+	_mouse_exited()
 
 func _on_wood_control_mouse_entered() -> void:
-	global.in_UI = true
+	_mouse_entered()
 	wood_timer.start()
 
 func _on_wood_timer_timeout() -> void:
@@ -125,64 +127,58 @@ func _on_wood_timer_timeout() -> void:
 func _on_wood_control_mouse_exited() -> void:
 	wood_note.visible = false
 	wood_timer.stop()
-	global.in_UI = false
-
-func _on_craft_control_mouse_entered() -> void:
-	global.in_UI = true
-
-func _on_craft_control_mouse_exited() -> void:
-	global.in_UI = false
-	
-func _on_draft_control_mouse_entered() -> void:
-	global.in_UI = true
-
-func _on_draft_control_mouse_exited() -> void:
-	global.in_UI = false
-
-func _on_build_control_mouse_entered() -> void:
-	global.in_UI = true
-
-func _on_build_control_mouse_exited() -> void:
-	global.in_UI = false
+	_mouse_exited()
 	
 func _on_craft_button_pressed() -> void:
 	if craft_menu.visible == true:
 		craft_menu.visible = false
-		
+		global.in_UI = false
 	elif craft_menu.visible == false:
 		craft_menu.visible = true
 		draft_menu.visible = false
 		build_menu.visible = false
-
+		_update_equipment()
+		global.in_UI = true
 
 func _on_draft_button_pressed() -> void:
 	if draft_menu.visible == true:
 		draft_menu.visible = false
+		global.in_UI = false
 	elif draft_menu.visible == false:
-		_update_soldiers()
 		draft_menu.visible = true
 		craft_menu.visible = false
 		build_menu.visible = false
+		_update_soldiers()
+		global.in_UI = true
 
 func _on_build_button_pressed() -> void:
 	if build_menu.visible == true:
 		build_menu.visible = false
+		global.in_UI = false
 	elif build_menu.visible == false:
 		build_menu.visible = true
 		craft_menu.visible = false
 		draft_menu.visible = false
+		global.in_UI = true
 
-func _on_craft_menu_mouse_entered() -> void:
+func _mouse_entered() -> void:
 	global.in_UI = true
 
-func _on_craft_menu_mouse_exited() -> void:
-	global.in_UI = false
+func _mouse_exited() -> void: 
+	if draft_menu.visible or craft_menu.visible or build_menu.visible:
+		pass
+	else:
+		global.in_UI = false
 
-func _on_draft_menu_mouse_entered() -> void:
-	global.in_UI = true
+func _on_next_day_button_pressed() -> void:
+	get_parent()._next_day()
 
-func _on_draft_menu_mouse_exited() -> void:
-	global.in_UI = false
+func _on_zoom_out_pressed() -> void:
+	ui.get_parent().camera.zoom.x *= 0.9
+	ui.get_parent().camera.zoom.y *= 0.9
+	zoom_label.text = (str(snapped(ui.get_parent().camera.zoom.x, 0.1)) + "x")
 
-func _draft_soldier() -> void:
-	pass
+func _on_zoom_in_pressed() -> void:
+	ui.get_parent().camera.zoom.x *= 1.1
+	ui.get_parent().camera.zoom.y *= 1.1
+	zoom_label.text = (str(snapped(ui.get_parent().camera.zoom.x, 0.1)) + "x")
