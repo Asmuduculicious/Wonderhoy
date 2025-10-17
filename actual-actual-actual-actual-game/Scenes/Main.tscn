@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b72sujkte7f5d"]
+[gd_scene load_steps=10 format=3 uid="uid://b72sujkte7f5d"]
 
 [ext_resource type="Script" uid="uid://p5yrvnkqqban" path="res://Scripts/main scene.gd" id="1_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://bs0lxe67csf5i" path="res://Scenes/UI.tscn" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://6uqigvh0stnq" path="res://Scenes/Player_army.tscn" id="2_pbw6q"]
 [ext_resource type="Texture2D" uid="uid://dmyse118dg1un" path="res://Resources/Tilemap/Tilemap with border.png" id="3_rgh2o"]
 [ext_resource type="Texture2D" uid="uid://uqv6mict2ear" path="res://Resources/Tilemap/Tilemap without border.png" id="4_pbw6q"]
 
@@ -209,13 +210,13 @@ texture_region_size = Vector2i(32, 32)
 tile_shape = 3
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_v1gob")
 sources/2 = SubResource("TileSetAtlasSource_jw32o")
+sources/1 = SubResource("TileSetAtlasSource_v1gob")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_rgh2o"]
 b = Vector2(0, 0)
 
-[node name="Everything" type="Control" node_paths=PackedStringArray("UI", "tilemap", "camera", "mouse")]
+[node name="Everything" type="Control" node_paths=PackedStringArray("UI", "tilemap", "camera", "mouse", "army_control")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -227,6 +228,8 @@ UI = NodePath("CanvasLayer")
 tilemap = NodePath("Main Map")
 camera = NodePath("Camera")
 mouse = NodePath("Mousefollow")
+army_scene = ExtResource("2_pbw6q")
+army_control = NodePath("Army")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_r150o")]
 
@@ -240,5 +243,12 @@ zoom = Vector2(3, 3)
 
 [node name="Shape" type="CollisionShape2D" parent="Mousefollow"]
 shape = SubResource("SegmentShape2D_rgh2o")
+
+[node name="Army" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.998095
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_shape_entered" from="Mousefollow" to="." method="_on_mousefollow_body_shape_entered"]
